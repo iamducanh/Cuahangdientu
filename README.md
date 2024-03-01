@@ -18,8 +18,8 @@ The official website is .. đang update
 - đăng ký
 - quên pass
 - add to cart
-- tang giam in order ( thiếu api đang làm ... )
-- thanh toán = paypal ( sử dụng dev.paypal để test)
+- tang giam in order (  api đang bug ... )
+- thanh toán = paypal ( sử dụng dev.paypal để test) (user : sb-rupms27981816@personal.example.com ; pass : Z1exk<3! )
 - bình luân
 - đánh giá
 - lọc sản phẩm theo giá tiền , ...
@@ -29,6 +29,6 @@ The official website is .. đang update
 
 
 #### đối với trang admin :
--thêm sản phẩm
--thêm biến thể sản phẩm
--quản lí user cấp quyền user thường or admin
+- thêm sản phẩm
+- thêm biến thể sản phẩm
+- quản lí user cấp quyền user thường or admin
