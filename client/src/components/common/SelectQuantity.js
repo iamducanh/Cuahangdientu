@@ -1,22 +1,41 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
+const SelectQuantity = ({
+  quantity,
+  handleQuantity,
+  handleChangeQuantity,
+  handleClickOptions,
+}) => {
+  return (
+    <div className="flex items-center">
+      <span
+        onClick={(e) => {
+          handleChangeQuantity("minus");
+          handleClickOptions(e,"CART")
+        }}
+        className="p-2 cursor-pointer border-r border-black"
+      >
+        -
+      </span>
+      <input
+        className="py-2 outline-none w-[50px] text-black text-center"
+        type="text"
+        value={quantity}
+        onChange={(e) => {
+          handleQuantity(e.target.value);
+        }}
+      />
+      <span
+        onClick={(e) => {
+          handleChangeQuantity("plus");
+          handleClickOptions(e,"CART")
+        }}
+        className="p-2 cursor-pointer border-l border-black"
+      >
+        +
+      </span>
+    </div>
+  );
+};
 
-const SelectQuantity = ({ quantity, handleQuantity, handleChangeQuantity, handleClickOptions }) => {
-  
-    return (
-        <div className='flex items-center'>
-            <span onClick={(e) => {handleChangeQuantity('minus');
-        handleClickOptions && handleClickOptions(e,"CART")}} className='p-2 cursor-pointer border-r border-black'>-</span>
-            <input
-                className='py-2 outline-none w-[50px] text-black text-center'
-                type="text"
-                value={quantity}
-                onChange={e => {handleQuantity(e.target.value); 
-                }}
-            />
-            <span onClick={(e) => {handleChangeQuantity('plus');handleClickOptions&& handleClickOptions(e,"CART")}} className='p-2 cursor-pointer border-l border-black'>+</span>
-        </div>
-    )
-}
-
-export default SelectQuantity
+export default SelectQuantity;

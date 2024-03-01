@@ -21,6 +21,7 @@ router.put(
 )
 router.put("/address", [verifyAccessToken], ctrls.updateUserAddress)
 router.put("/cart", [verifyAccessToken], ctrls.updateCart)
+router.put("/addToCart", [verifyAccessToken], ctrls.addToCart)
 router.delete(
   "/remove-cart/:pid/:color",
   [verifyAccessToken],

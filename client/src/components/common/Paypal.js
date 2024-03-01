@@ -24,6 +24,7 @@ const ButtonWrapper = ({ currency, showSpinner, amount, payload, setIsSuccess })
             }
         })
     }, [currency, showSpinner])
+    
 
     const handleSaveOrder = async () => {
         const response = await apiCreateOrder({ ...payload, status: 'Succeed' })
@@ -40,6 +41,7 @@ const ButtonWrapper = ({ currency, showSpinner, amount, payload, setIsSuccess })
     return (
         <>
             {(showSpinner && isPending) && <div className="spinner" />}
+            <button onClick={()=> {console.log('payload',{payload,amount});}}>Check order data</button>
             <PayPalButtons
                 style={style}
                 disabled={false}

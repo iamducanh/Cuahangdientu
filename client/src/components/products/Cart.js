@@ -39,7 +39,7 @@ const Cart = ({ dispatch, navigate }) => {
                                 <span className='text-sm text-main'>{el.title}</span>
                                 <span className='text-[10px]'>{el.color}</span>
                                 <span className='text-[10px]'>{`Quantity: ${el.quantity}`}</span>
-                                <span className='text-sm'>{formatMoney(el.price*el.quantity) + ' VND'}</span>
+                                <span className='text-sm'>{formatMoney(el.price) + ' VND'}</span>
                             </div>
                         </div>
                         <span onClick={() => removeCart(el.product?._id, el.color)} className='h-8 w-8 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer'><ImBin size={16} /></span>
@@ -49,7 +49,7 @@ const Cart = ({ dispatch, navigate }) => {
             <div className='row-span-2 flex flex-col justify-between h-full'>
                 <div className='flex items-center justify-between pt-4 border-t'>
                     <span>Subtotal:</span>
-                    <span>{formatMoney(currentCart?.reduce((sum, el) => sum + Number(el.price*el.quantity), 0)) + ' VND'}</span>
+                    <span>{formatMoney(currentCart?.reduce((sum, el) => sum + Number(el.price), 0)) + ' VND'}</span>
                 </div>
                 <span className='text-center text-gray-700 italic text-xs'>Shipping, taxes, and discounts calculated at checkout.</span>
                 <Button handleOnClick={() => {

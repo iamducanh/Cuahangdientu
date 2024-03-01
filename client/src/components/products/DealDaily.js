@@ -8,7 +8,7 @@ import { useSelector } from "react-redux"
 import withBaseComponent from "hocs/withBaseComponent"
 import { getDealDaily } from "store/products/productSlice"
 import Swal from "sweetalert2"
-import { apiUpdateCart } from "apis"
+import { apiAddToCart, apiUpdateCart } from "apis"
 import { getCurrent } from "store/user/asyncActions"
 import { toast } from "react-toastify"
 
@@ -108,7 +108,7 @@ const DealDaily = ({ dispatch  }) => {
           showCancelButton: true,
           confirmButtonText: "Go login page",
         })
-      const response = await apiUpdateCart({
+      const response = await apiAddToCart({
         pid: dealDaily?.data._id,
         color: dealDaily?.data?.color,
         quantity: 1,

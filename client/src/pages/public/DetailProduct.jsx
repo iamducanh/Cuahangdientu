@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { createSearchParams, useParams } from "react-router-dom"
-import { apiGetProduct, apiGetProducts, apiUpdateCart } from "apis"
+import { apiAddToCart, apiGetProduct, apiGetProducts, apiUpdateCart } from "apis"
 import {
   Breadcrumb,
   Button,
@@ -148,11 +148,11 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate }) => {
             }).toString(),
           })
       })
-    const response = await apiUpdateCart({
+    const response = await apiAddToCart({
       pid,
       color: currentProduct.color || product?.color,
       quantity,
-      price: currentProduct.price || product.price,
+      price: currentProduct.price*quantity || product.price,
       thumbnail: currentProduct.thumb || product.thumb,
       title: currentProduct.title || product.title,
     })
