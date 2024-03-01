@@ -8,6 +8,7 @@ import { getCurrent } from 'store/user/asyncActions'
 
 const Checkout = ({ dispatch,navigate  }) => {
     const { currentCart, current } = useSelector(state => state.user)
+    console.log('curentCart in checkout',currentCart)
     const [isSuccess, setIsSuccess] = useState(false)
     useEffect(() => {
         if (isSuccess) dispatch(getCurrent())
@@ -44,7 +45,7 @@ const Checkout = ({ dispatch,navigate  }) => {
                         <div className='flex flex-col gap-6'>
                             <span className='flex items-center gap-8 text-sm'>
                                 <span className='font-medium'>Subtotal:</span>
-                                <span className='text-main font-bold'>{`${formatMoney(currentCart?.reduce((sum, el) => +el?.price * el.quantity + sum, 0))} VND`}</span>
+                                <span className='text-main font-bold'>{`${formatMoney(currentCart?.reduce((sum, el) => +el?.price + sum, 0))} VND`}</span>
                             </span>
                             <span className='flex items-center gap-8 text-sm'>
                                 <span className='font-medium'>Address:</span>

@@ -3,8 +3,21 @@ import React, { useEffect, useState } from 'react'
 import { formatMoney } from 'ultils/helpers'
 import { updateCart } from 'store/user/userSlice'
 import withBaseComponent from 'hocs/withBaseComponent'
+import { useDispatch, useSelector } from 'react-redux'
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { getCurrent } from 'store/user/asyncActions'
+import Swal from 'sweetalert2'
+import path from 'ultils/path'
+import { apiUpdateCart } from 'apis'
+
 const OrderItem = ({ dispatch, color, dfQuantity = 1, price, title, thumbnail, pid }) => {
+    const {current} = useSelector(state => state.user)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [itemPrice, setItemPrice] = useState(() => price/dfQuantity)
     const [quantity, setQuantity] = useState(() => dfQuantity)
+    console.log('Quantity', quantity)
     const handleQuantity = (number) => {
         if (+number > 1) setQuantity(number)
     }
@@ -13,11 +26,53 @@ const OrderItem = ({ dispatch, color, dfQuantity = 1, price, title, thumbnail, p
         if (flag === 'minus') setQuantity(prev => +prev - 1)
         if (flag === 'plus') setQuantity(prev => +prev + 1)
     }
+
+
     useEffect(() => {
+        console.log('update cart', { pid, quantity, color })
         dispatch(updateCart({ pid, quantity, color }))
     }, [quantity])
     // Set quantity
 
+        const handleClickOptions = async (e, flag, changeQuantity) => {
+            e.stopPropagation()
+            if (flag === "CART") {
+              if (!current)
+                return Swal.fire({
+                  title: "Almost...",
+                  text: "Please login first!",
+                  icon: "info",
+                  cancelButtonText: "Not now!",
+                  showCancelButton: true,
+                  confirmButtonText: "Go login page",
+                }).then(async (rs) => {
+                  if (rs.isConfirmed)
+                    navigate({
+                      pathname: `/${path.LOGIN}`,
+                      search: createSearchParams({
+                        redirect: location.pathname,
+                      }).toString(),
+                    })
+                })
+
+                
+
+                console.log('Quantity at update cart', quantity)
+              const response = await apiUpdateCart({
+                pid: pid,
+                color: color,
+                quantity,
+                price: price*quantity,
+                thumbnail: thumbnail,
+                title: title,
+              })
+              if (response.success) {
+                toast.success(response.mes)
+                dispatch(getCurrent())
+              } else toast.error(response.mes)
+            }
+        
+          }
     return (
         <div className='w-main mx-auto border-b font-bold py-3 grid grid-cols-10'>
             <span className='col-span-6 w-full text-center'>
@@ -35,11 +90,12 @@ const OrderItem = ({ dispatch, color, dfQuantity = 1, price, title, thumbnail, p
                         quantity={quantity}
                         handleQuantity={handleQuantity}
                         handleChangeQuantity={handleChangeQuantity}
+                        handleClickOptions={handleClickOptions}
                     />
                 </div>
             </span>
             <span className='col-span-3 w-full h-full flex items-center justify-center text-center'>
-                <span className='text-lg'>{formatMoney(price * quantity) + ' VND'}</span>
+                <span className='text-lg'>{formatMoney(price*quantity) + ' VND'}</span>
             </span>
         </div>
     )

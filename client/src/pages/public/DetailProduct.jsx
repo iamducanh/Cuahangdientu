@@ -182,7 +182,7 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate }) => {
         className={clsx(
           "bg-white m-auto mt-4 flex",
           isQuickView
-            ? "max-w-[1000px] gap-16 p-8 max-h-[80vh] overflow-y-auto relative z-100000000000000"
+            ? "max-w-[1000px] gap-16 p-8 max-h-[100vh] overflow-y-auto relative "
             : "w-main"
         )}
       >

@@ -1,12 +1,12 @@
 const data = [
     {
         cate: 'Smartphone',
-        brand: ['Apple', 'Samsung', 'LG', 'Asus', 'Nokia', 'BlackBerry'],
+        brand: ['Apple', 'Samsung', 'LG', 'Xiaomi', 'Realme', 'Oppo'],
         image: 'https://cdn.shopify.com/s/files/1/1903/4853/files/mobile-devices_300x.jpg?v=1613166682'
     },
     {
         cate: 'Tablet',
-        brand: ['iPad', 'Samsung', 'Acer', 'Asus', 'Lenovo', 'Haier'],
+        brand: ['iPad', 'Samsung', 'Acer', 'Asus', 'Lenovo', 'Xiaomi'],
         image: 'https://cdn.shopify.com/s/files/1/1903/4853/files/pc-1_300x.jpg?v=1613166682'
     },
     {
@@ -16,12 +16,12 @@ const data = [
     },
     {
         cate: 'Speaker',
-        brand: [],
+        brand: ['Sony', 'JBL', 'Bose', 'Harman Kardon', 'Beats', 'Sonos'],
         image: 'https://cdn-amz.woka.io/images/I/51KZcUQIyiS.jpg'
     },
     {
         cate: 'Camera',
-        brand: [],
+        brand: [ 'Sony' , "Canon" , "Nikon" , "Fujifilm" , "Panasonic" , "Olympus"],
         image: 'https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn//News/0//camera-giam-sat-3-800x533.jpg'
     },
     {
@@ -31,12 +31,12 @@ const data = [
     },
     {
         cate: 'Television',
-        brand: ['Apple', 'Samsung', 'LG', 'Asus', 'Nokia', 'BlackBerry'],
+        brand: ['Apple', 'Samsung', 'LG', 'Asus', 'Sony', 'Xiaomi'],
         image: 'https://cdn.shopify.com/s/files/1/1903/4853/files/television_300x.jpg?v=1613166810'
     },
     {
         cate: 'Printer',
-        brand: ['Samsung', 'Acer', 'Asus', 'Lenovo', 'Haier'],
+        brand: ['Canon', 'HP', 'Epson', 'Brother', 'Samsung', 'Xerox'],
         image: 'https://cdn.shopify.com/s/files/1/1903/4853/files/printer_300x.jpg?v=1613166810'
     },
 ]

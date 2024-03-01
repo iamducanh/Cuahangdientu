@@ -9,11 +9,13 @@ const Modal = ({ children }) => {
     return (
         <div
             onClick={() => dispatch(showModal({ isShowModal: false, modalChildren: null }))}
-            className='absolute inset-0 z-99 bg-overlay flex items-center justify-center'
+            className='absolute inset-0  bg-overlay flex items-center justify-center z-50'
         >
             {children}
         </div>
     )
+    
+    
 }
 
 export default memo(Modal)

@@ -14,7 +14,7 @@ const VoteOption = ({ nameProduct, handleSubmitVoteOption }) => {
         modalRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }, [])
     return (
-        <div onClick={e => e.stopPropagation()} ref={modalRef} className='bg-white w-[700px] p-4 flex-col gap-4 flex items-center justify-center'>
+        <div onClick={e => e.stopPropagation()} ref={modalRef} className='bg-white w-[700px] p-4 flex-col gap-4 flex items-center justify-center '>
             <img src={logo} alt="logo" className='w-[300px] my-8 object-contain' />
             <h2 className='text-center text-medium text-lg'>{`Voting product ${nameProduct}`}</h2>
             <textarea
