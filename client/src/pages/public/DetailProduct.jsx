@@ -96,7 +96,7 @@ const DetailProduct = ({ isQuickView, data, location, dispatch, navigate }) => {
     if (titleRef.current !== null) {
       titleRef.current.scrollIntoView({ block: "center" });
     } else {
-      console.error("Element referenced by titleRef is null.");
+    //  console.error("Element referenced by titleRef is null.");
     }
   }, [pid])
  

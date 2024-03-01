@@ -19,78 +19,83 @@ const OrderItem = ({
   title,
   thumbnail,
   pid,
+  product,
 }) => {
   const { current } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const location = useLocation();
-  const [quantity, setQuantity] = useState(() => dfQuantity);
-  const [individualPrice, setIndividualPrice] = useState();
-  const [itemPrice, setItemPrice] = useState(() => price);
-  console.log("Quantity", quantity);
-  const handleQuantity = (number) => {
-    if (+number >= 1) {
-      setQuantity(number);
-      setItemPrice(+individualPrice * +number);
-    }
-  };
-  const handleChangeQuantity = (flag) => {
-    if (flag === "minus" && quantity === 1) return;
-    if (flag === "minus") {
-      setQuantity((prev) => +prev - 1);
-      setItemPrice(+individualPrice * (+quantity - 1));
-    }
-    if (flag === "plus") {
-      setQuantity((prev) => +prev + 1);
-      setItemPrice(+individualPrice * (+quantity + 1));
-    }
-  };
+  const [quantity, setQuantity] = useState(dfQuantity);
+  const [itemPrice, setItemPrice] = useState(price); // Initialize with a default value
 
   useEffect(() => {
-    setIndividualPrice(price / quantity);
-  }, [pid]);
-  useEffect(() => {
-    console.log("update cart", { pid, quantity, color });
     dispatch(updateCart({ pid, quantity, color }));
-  }, [quantity,price,pid]);
-  // Set quantity
+  }, [quantity, pid, color, dispatch]);
 
-  const handleClickOptions = async (e, flag) => {
-    console.log('called')
-    e.stopPropagation();
-    if (flag === "CART") {
-      if (!current)
-        return Swal.fire({
+  useEffect(() => {
+    const updateCartDetails = async () => {
+      if (!current) {
+        await Swal.fire({
           title: "Almost...",
           text: "Please login first!",
           icon: "info",
           cancelButtonText: "Not now!",
           showCancelButton: true,
           confirmButtonText: "Go login page",
-        }).then(async (rs) => {
-          if (rs.isConfirmed)
+        }).then((result) => {
+          if (result.isConfirmed) {
             navigate({
               pathname: `/${path.LOGIN}`,
               search: createSearchParams({
                 redirect: location.pathname,
               }).toString(),
             });
+          }
         });
+        return;
+      }
 
-      console.log("Quantity at update cart", quantity);
-      console.log("price at update cart", price);
       const response = await apiUpdateCart({
-        pid: pid,
-        color: color,
+        pid,
+        color,
         quantity,
-        price: itemPrice,
-        thumbnail: thumbnail,
-        title: title,
+        price: product.price * quantity,
+        thumbnail,
+        title,
       });
+
       if (response.success) {
-        toast.success(response.mes);
+        toast.success(response.message);
         dispatch(getCurrent());
-      } else toast.error(response.mes);
+      } else {
+        toast.error(response.message);
+      }
+    };
+
+    // Ensure to call updateCartDetails only when itemPrice is correctly calculated
+    if (itemPrice !== NaN && itemPrice !== null) updateCartDetails();
+  }, [
+    itemPrice,
+    pid,
+    color,
+    quantity,
+    thumbnail,
+    title,
+    dispatch,
+    navigate,
+    location,
+  ]);
+
+  const handleQuantity = (newQuantity) => {
+    if (+newQuantity >= 1) {
+      setQuantity(+newQuantity);
     }
+  };
+
+  const handleChangeQuantity = (flag) => {
+    setQuantity((prev) => {
+      const nextQuantity = flag === "minus" ? Math.max(1, prev - 1) : prev + 1;
+      return nextQuantity;
+    });
   };
   return (
     <div className="w-main mx-auto border-b font-bold py-3 grid grid-cols-10">
@@ -109,7 +114,6 @@ const OrderItem = ({
             quantity={quantity}
             handleQuantity={handleQuantity}
             handleChangeQuantity={handleChangeQuantity}
-            handleClickOptions={handleClickOptions}
           />
         </div>
       </span>

@@ -9,7 +9,7 @@ import path from 'ultils/path'
 
 const DetailCart = ({ location, navigate }) => {
     const { currentCart, current } = useSelector(state => state.user)
-    console.log('current cart in detail cart', currentCart)
+   // console.log('current cart in detail cart', currentCart)
     const handleSubmit = () => {
         if (!current?.address) return Swal.fire({
             icon: 'info',
@@ -50,6 +50,7 @@ const DetailCart = ({ location, navigate }) => {
                         thumbnail={el.thumbnail}
                         price={el.price}
                         pid={el.product?._id}
+                        product={el.product}
                     />
                 ))}
             </div>

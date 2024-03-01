@@ -11,7 +11,6 @@ const SelectQuantity = ({
       <span
         onClick={(e) => {
           handleChangeQuantity("minus");
-          handleClickOptions(e,"CART")
         }}
         className="p-2 cursor-pointer border-r border-black"
       >
@@ -28,7 +27,6 @@ const SelectQuantity = ({
       <span
         onClick={(e) => {
           handleChangeQuantity("plus");
-          handleClickOptions(e,"CART")
         }}
         className="p-2 cursor-pointer border-l border-black"
       >

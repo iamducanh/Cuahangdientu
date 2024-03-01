@@ -8,7 +8,7 @@ import { getCurrent } from 'store/user/asyncActions'
 
 const Checkout = ({ dispatch,navigate  }) => {
     const { currentCart, current } = useSelector(state => state.user)
-    console.log('curentCart in checkout',currentCart)
+   // console.log('curentCart in checkout',currentCart)
     const [isSuccess, setIsSuccess] = useState(false)
     useEffect(() => {
         if (isSuccess) dispatch(getCurrent())

@@ -40,8 +40,9 @@ const ButtonWrapper = ({ currency, showSpinner, amount, payload, setIsSuccess })
 
     return (
         <>
+            <button onClick={() => {console.log('payload',payload)}}>Check order data</button>
+
             {(showSpinner && isPending) && <div className="spinner" />}
-            <button onClick={()=> {console.log('payload',{payload,amount});}}>Check order data</button>
             <PayPalButtons
                 style={style}
                 disabled={false}
