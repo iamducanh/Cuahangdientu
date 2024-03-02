@@ -17,8 +17,8 @@ The official website is .. đang update
 - đăng nhập
 - đăng ký
 - quên pass
-- add to cart
-- tang giam in order (  api đang bug ... )
+- add to cart , xóa
+- tăng giảm in order ( page home chỉ add  1 , tăng số lượng thì add ở page detail product or my-cart {logic bên backend} trừ dealdaily )
 - thanh toán = paypal ( sử dụng dev.paypal để test) (user : sb-rupms27981816@personal.example.com ; pass : Z1exk<3! )
 - bình luân
 - đánh giá
@@ -29,6 +29,7 @@ The official website is .. đang update
 
 
 #### đối với trang admin :
+- user admin test ( tuonghaihuoc@gmail.com pass : ducanh123)
 - thêm sản phẩm
 - thêm biến thể sản phẩm
 - quản lí user cấp quyền user thường or admin
