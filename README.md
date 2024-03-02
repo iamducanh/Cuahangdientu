@@ -10,7 +10,6 @@ The official website is   [cuahangdientu.live](https://cuahangdientu.vercel.app/
 - React redux toolkit
 - TailwindCSS
 - redux-persist 
-- redux-persist
 - ........
      
 ## To do : 
