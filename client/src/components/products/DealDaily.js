@@ -11,6 +11,7 @@ import Swal from "sweetalert2"
 import { apiAddToCart, apiUpdateCart } from "apis"
 import { getCurrent } from "store/user/asyncActions"
 import { toast } from "react-toastify"
+import { Link } from "react-router-dom"
 
 
 
@@ -84,7 +85,7 @@ const DealDaily = ({ dispatch  }) => {
           if (hour > 0) {
             setHour((prev) => prev - 1)
             setMinute(59)
-            setSecond(59)
+            setSecond(59) 
           } else {
             setExpireTime(!expireTime)
           }
@@ -95,35 +96,36 @@ const DealDaily = ({ dispatch  }) => {
       clearInterval(idInterval)
     }
   }, [second, minute, hour, expireTime])
-  
-  const handleClickOptions = async (e, flag) => {
-    e.stopPropagation()
-    if (flag === "CART") {
-      if (!current)
-        return Swal.fire({
-          title: "Almost...",
-          text: "Please login first!",
-          icon: "info",
-          cancelButtonText: "Not now!",
-          showCancelButton: true,
-          confirmButtonText: "Go login page",
-        })
-      const response = await apiAddToCart({
-        pid: dealDaily?.data._id,
-        color: dealDaily?.data?.color,
-        quantity: 1,
-        price: dealDaily?.data?.price,
-        thumbnail: dealDaily?.data?.thumb,
-        title: dealDaily?.data?.title,
-      })
-      if (response.success) {
-        toast.success(response.mes)
-        dispatch(getCurrent())
-      } else toast.error(response.mes)
+     
+ // const handleClickOptions = async (e, flag) => {
+   // e.stopPropagation()
+   // if (flag === "CART") {
+    //  if (!current)
+   //     return Swal.fire({
+      //    title: "Almost...",
+     //     text: "Please login first!",
+     //     icon: "info",
+      //    cancelButtonText: "Not now!",
+      //    showCancelButton: true,
+       //   confirmButtonText: "Go login page",
+      //  })
+     // const response = await apiAddToCart({
+    //    pid: dealDaily?.data._id,
+    //    color: dealDaily?.data?.color,
+    //    quantity: 1,
+   //     price: dealDaily?.data?.price,
+   //     thumbnail: dealDaily?.data?.thumb,
+   //     title: dealDaily?.data?.title,
+   //   })
+   //   if (response.success) {
+    //    toast.success(response.mes)
+     //   dispatch(getCurrent())
+      //} else toast.error(response.mes)
       
-    }
+    //}
+  //}
 
-  }
+  
   
 
   return (
@@ -166,9 +168,9 @@ const DealDaily = ({ dispatch  }) => {
         </div>
         <button
           type="button"
-          className="flex gap-2 items-center justify-center w-full bg-main hover:bg-gray-800 text-white font-medium py-2" onClick={(e) => handleClickOptions(e, "CART")}
-          >
-          <span>Buy Now</span>
+          className="flex gap-2 items-center justify-center w-full bg-main hover:bg-gray-800 text-white font-medium py-2">
+          
+          <Link to ="/products">Go to Page Product</Link>
         </button>
       </div>
     </div>
