@@ -42,23 +42,23 @@ const DealDaily = ({ dispatch  }) => {
      
       
 
-      //   const today = `${moment().format("MM/DD/YYYY")} 7:00:00`
-      //   const seconds =
-      //     new Date(today).getTime() - new Date().getTime() + 24 * 3600 * 1000
-      //   const number = secondsToHms(seconds)
-      //   setHour(number.h)
-      //   setMinute(number.m)
-      //   setSecond(number.s)
-      // } else {
-      //   setHour(0)
-      //   setMinute(59)
-      //   setSecond(59)
+        const today = `${moment().format("MM/DD/YYYY")} 7:00:00`
+        const seconds =
+          new Date(today).getTime() - new Date().getTime() + 24 * 3600 * 1000
+        const number = secondsToHms(seconds)
+        setHour(number.h)
+        setMinute(number.m)
+        setSecond(number.s)
+      } else {
+        setHour(0)
+        setMinute(59)
+        setSecond(59)
     }
   }
   //   console.log(dealDaily)
-  // useEffect(() => {
-  //     fetchDealDaily()
-  // }, [])
+  useEffect(() => {
+      fetchDealDaily()
+  }, [])
  
   useEffect(() => {
     if (dealDaily?.time) {
@@ -97,33 +97,33 @@ const DealDaily = ({ dispatch  }) => {
     }
   }, [second, minute, hour, expireTime])
      
- // const handleClickOptions = async (e, flag) => {
-   // e.stopPropagation()
-   // if (flag === "CART") {
-    //  if (!current)
-   //     return Swal.fire({
-      //    title: "Almost...",
-     //     text: "Please login first!",
-     //     icon: "info",
-      //    cancelButtonText: "Not now!",
-      //    showCancelButton: true,
-       //   confirmButtonText: "Go login page",
-      //  })
-     // const response = await apiAddToCart({
-    //    pid: dealDaily?.data._id,
-    //    color: dealDaily?.data?.color,
-    //    quantity: 1,
-   //     price: dealDaily?.data?.price,
-   //     thumbnail: dealDaily?.data?.thumb,
-   //     title: dealDaily?.data?.title,
-   //   })
-   //   if (response.success) {
-    //    toast.success(response.mes)
-     //   dispatch(getCurrent())
-      //} else toast.error(response.mes)
+ const handleClickOptions = async (e, flag) => {
+   e.stopPropagation()
+   if (flag === "CART") {
+     if (!current)
+       return Swal.fire({
+         title: "Almost...",
+         text: "Please login first!",
+         icon: "info",
+         cancelButtonText: "Not now!",
+         showCancelButton: true,
+         confirmButtonText: "Go login page",
+       })
+     const response = await apiAddToCart({
+       pid: dealDaily?.data._id,
+       color: dealDaily?.data?.color,
+       quantity: 1,
+       price: dealDaily?.data?.price,
+       thumbnail: dealDaily?.data?.thumb,
+       title: dealDaily?.data?.title,
+     })
+     if (response.success) {
+       toast.success(response.mes)
+       dispatch(getCurrent())
+      } else toast.error(response.mes)
       
-    //}
-  //}
+    }
+  }
 
   
   
