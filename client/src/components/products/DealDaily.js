@@ -168,9 +168,11 @@ const DealDaily = ({ dispatch  }) => {
         </div>
         <button
           type="button"
+          onClick={(e) => handleClickOptions(e, "CART")}
           className="flex gap-2 items-center justify-center w-full bg-main hover:bg-gray-800 text-white font-medium py-2">
-          
-          <Link to ="/products">Go to Page Product</Link>
+          {/* <Link to ="/products">Go to Page Product</Link> */}
+          {/* cái buy now đâu r */}
+          Buy Now
         </button>
       </div>
     </div>

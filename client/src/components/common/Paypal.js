@@ -40,7 +40,6 @@ const ButtonWrapper = ({ currency, showSpinner, amount, payload, setIsSuccess })
 
     return (
         <>
-            <button onClick={() => {console.log('payload',payload)}}>Check order data</button>
 
             {(showSpinner && isPending) && <div className="spinner" />}
             <PayPalButtons
