@@ -12,11 +12,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
+// App subscribe vào redux store. Bất kì component nào trong app cũng có thể lấy state từ redux store.
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <App />
+        <App /> 
       </BrowserRouter>
     </PersistGate>
   </Provider>

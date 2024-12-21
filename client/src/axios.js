@@ -3,9 +3,13 @@ const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URI,
 });
 
-// Add a request interceptor
+// Add a request interceptor - Interceptor can thiệp vào mọi request gửi đi từ client
 instance.interceptors.request.use(function (config) {
-    // Do something before request is sent
+/**
+ * Logic can thiệp:
+ * 1/ Truy cập vào localStorage để lấy accessToken
+ * 2/ Gán accessToken vào headers {Authorization: `Bearer ${accessToken}`
+ */    
     let localStorageData = window.localStorage.getItem('persist:shop/user')
     if (localStorageData && typeof localStorageData === 'string') {
         localStorageData = JSON.parse(localStorageData)
@@ -13,6 +17,7 @@ instance.interceptors.request.use(function (config) {
         config.headers = { authorization: `Bearer ${accessToken}` }
         return config
     } else return config;
+
 }, function (error) {
     // Do something with request error
     return Promise.reject(error);

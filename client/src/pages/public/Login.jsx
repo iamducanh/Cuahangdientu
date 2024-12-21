@@ -6,12 +6,14 @@ import { useNavigate, Link, useSearchParams } from 'react-router-dom'
 import path from 'ultils/path'
 import { login } from 'store/user/userSlice'
 import { showModal } from 'store/app/appSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { validate } from 'ultils/helpers'
 
 const Login = () => {
     const navigate = useNavigate()
+    const {isLoggedIn} = useSelector(state => state.user)
+    const {newProducts} = useSelector(state => state.products)
     const dispatch = useDispatch()
     const [payload, setPayload] = useState({
         email: '',
