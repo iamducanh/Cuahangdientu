@@ -17,7 +17,7 @@ const data = [
     {
         cate: 'Speaker',
         brand: ['Sony', 'JBL', 'Bose', 'Harman Kardon', 'Beats', 'Sonos'],
-        image: 'https://cdn-amz.woka.io/images/I/51KZcUQIyiS.jpg'
+        image: 'https://hdradio.vn/upload/hinhanh/loa-di-dong/jbl/charge-5/Loa-bluetooth-JBL-Charge-5-moi-10.jpg'
     },
     {
         cate: 'Camera',
